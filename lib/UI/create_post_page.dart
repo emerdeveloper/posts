@@ -52,23 +52,30 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 
   Widget _createContainer() {
-    return BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-      if (simpleImage == null) {
-        return Text('Selecciona una foto');
-      } 
-      if (state is PostCreatingState) {
-        return _createLoading();
-      }
-      if (state is PostCreatedState) {
-        myCallback(() {
-          Navigator.pop(context, true);
-        });
-      }
-      if (state is ImagePickedState) {
-        return _enableCreatePost();
-      }
-      return Container();
-    });
+    return BlocListener<PostBloc, PostState>(
+        listener: (context, state) {
+          if (state is PostCreatedState) {
+            Navigator.pop(context, true);
+          }
+        },
+        child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
+          if (simpleImage == null) {
+            return Text('Selecciona una foto');
+          } 
+          if (state is PostCreatingState) {
+            return _createLoading();
+          }
+          // if (state is PostCreatedState) {
+          //   _myCallback(() {
+          //     Navigator.pop(context, true);
+          //   });
+          // }
+          if (state is ImagePickedState) {
+            return _enableCreatePost();
+          }
+          return Container();
+        })
+      );
   }
 
   Widget _enableCreatePost() {
@@ -116,7 +123,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
     return Center(child: CircularProgressIndicator());
   }
 
-  void myCallback(Function callback) {
+  void _myCallback(Function callback) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       callback();
     });
