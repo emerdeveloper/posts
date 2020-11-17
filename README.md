@@ -18,5 +18,5 @@ Use Firestore to save the post information, and use Firebase Storage to save the
 
 
 |  Posts      |  Create Post      |
-|------------|-------------|------------|------------|
+|------------|-------------|
 | ![Portrait](documentation/posts-screen.png) |  ![Portrait](documentation/create-post-screen.png)  |
