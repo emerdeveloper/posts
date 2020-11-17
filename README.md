@@ -8,6 +8,7 @@ Applying the concepts:
 * BLoC Pattern with ```flutter_bloc``` and ```equatable```
 * ImagePicker with ```image_picker```
 * StreamSubscription
+* InteractiveViewer
 
 # Functionality
 An APP Android/iOS which consists of creating posts (images with description) and show posts list in real time from multiple devices.
